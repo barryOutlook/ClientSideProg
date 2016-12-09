@@ -15,25 +15,14 @@ var staffDetailUrl = coreUrl+ "Staff/";
 function start() {
 
     hideStaffList();
-    http.onreadystatechange = GetBuList;
-    http.open("GET", buUrl);
-    http.send();
+    GetBuList();
+
 }
 
-//function GetBuList() {
-//    if (http.readyState == 4 && http.status == 200) {
-//        var buisinessUnits = JSON.parse(http.responseText);
-//        if (buisinessUnits != null) {
-//            displayItemsInBuList(buisinessUnits);
-//        } else {
-//            hideAll();
-//        }
-//    }
-//}
 
 function GetBuList() {
     if (Mydata) {
-        var shops = JSON.parse(Mydata.GetShops());
+        var shops = Mydata.getShops();
         if (shops != null) {
             displayItemsInBuList(shops);
         } else {
@@ -62,7 +51,7 @@ function displayItemsInBuList(arr) {
         // populate the first td with data from the array
         var id = arr[i].shopId;
         // populate the second row with a link
-        cell2.innerHTML = "&nbsp&nbsp&nbsp&nbsp<a href='#'     id='" + id + "' " + " >List Staff</a>";
+        cell2.innerHTML = "&nbsp&nbsp&nbsp&nbsp<a href='#'     id='" + id + "' " + " >List Items</a>";
         // bind this new link to a delete method
         document.getElementById(id).onclick = getStaff;
     }
