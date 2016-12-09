@@ -47,7 +47,6 @@
     function GetShops() {
         return shops;
     };
-
     
     function GetByShopId(shopId) {
         for (var i = 0; i < shops.length; i++) {
@@ -58,9 +57,6 @@
         }
     };
 
-
-
-
     return {
         getShops: GetShops,
         getShopById :GetByShopId
@@ -68,4 +64,3 @@
 
 })();
 
-// myRevealingModule.setName("Paul Kinlan");

@@ -53,7 +53,6 @@ function displayItemsInBuList(arr) {
 
 function getDetail(e) {
 
-   // var shop = Mydata.getShopById(e.target.id);
     var url = "./map.html?" + e.target.id;
     openMap(url);
 
