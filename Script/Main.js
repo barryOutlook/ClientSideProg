@@ -20,16 +20,28 @@ function start() {
     http.send();
 }
 
+//function GetBuList() {
+//    if (http.readyState == 4 && http.status == 200) {
+//        var buisinessUnits = JSON.parse(http.responseText);
+//        if (buisinessUnits != null) {
+//            displayItemsInBuList(buisinessUnits);
+//        } else {
+//            hideAll();
+//        }
+//    }
+//}
+
 function GetBuList() {
-    if (http.readyState == 4 && http.status == 200) {
-        var buisinessUnits = JSON.parse(http.responseText);
-        if (buisinessUnits != null) {
-            displayItemsInBuList(buisinessUnits);
+    if (Mydata) {
+        var shops = JSON.parse(Mydata.GetShops());
+        if (shops != null) {
+            displayItemsInBuList(shops);
         } else {
             hideAll();
         }
     }
 }
+
 //business units
 function displayItemsInBuList(arr) {
         
@@ -46,9 +58,9 @@ function displayItemsInBuList(arr) {
         var cell1 = row.insertCell(0);
         // insert another td withing the same row
         var cell2 = row.insertCell(1);
-        cell1.innerHTML = arr[i].title;
+        cell1.innerHTML = arr[i].name;
         // populate the first td with data from the array
-        var id = arr[i].businessUnitCode;
+        var id = arr[i].shopId;
         // populate the second row with a link
         cell2.innerHTML = "&nbsp&nbsp&nbsp&nbsp<a href='#'     id='" + id + "' " + " >List Staff</a>";
         // bind this new link to a delete method
