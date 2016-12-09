@@ -1,11 +1,11 @@
 ﻿var Mydata = (function () {
 
-    //var shop = {
-    //    shopId: 0,
-    //    name: "",
-    //    lat: 0.000000,
-    //    long: 0.000000
-    //};
+    var shop = {
+        shopId: 0,
+        name: "",
+        lat: 0.000000,
+        long: 0.000000
+    };
 
     var shops = [
         {
@@ -46,10 +46,24 @@
 
     function GetShops() {
         return shops;
-    }
+    };
+
+    
+    function GetByShopId(shopId) {
+        for (var i = 0; i < shops.length; i++) {
+            if (shops[i].shopId == shopId) {
+                
+                return shops[i];
+            }
+        }
+    };
+
+
+
 
     return {
-        getShops: GetShops
+        getShops: GetShops,
+        getShopById :GetByShopId
     };
 
 })();

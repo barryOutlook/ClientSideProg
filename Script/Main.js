@@ -1,14 +1,7 @@
-﻿
-var http = new XMLHttpRequest();
+﻿/// <reference path="../map.html" />
+/// <reference path="../map.html" />
 
-// this must point to YOUR web service
-var coreUrl = "http://task2final.azurewebsites.net/api/";
 
-var buUrl = coreUrl + "BusinessUnit";
-
-var staffListUrl = coreUrl + "Staff/BusinessUnit/";
-
-var staffDetailUrl = coreUrl+ "Staff/";
 
 
 //do the following at the start
@@ -53,17 +46,17 @@ function displayItemsInBuList(arr) {
         // populate the second row with a link
         cell2.innerHTML = "&nbsp&nbsp&nbsp&nbsp<a href='#'     id='" + id + "' " + " >List Items</a>";
         // bind this new link to a delete method
-        document.getElementById(id).onclick = getStaff;
+        document.getElementById(id).onclick = getDetail;
     }
 }
 
 
-function getStaff(e) {
+function getDetail(e) {
 
-    var detailUrl = staffListUrl + e.target.id;
-    http.onreadystatechange = requestDetail;
-    http.open("GET", detailUrl);
-    http.send();
+   // var shop = Mydata.getShopById(e.target.id);
+    var url = "./map.html?" + e.target.id;
+    openMap(url);
+
 
 }
 
@@ -76,6 +69,11 @@ function requestDetail() {
             hideStaffList();
         }
     }
+}
+
+
+function openMap(url) {
+    window.open(url, 'window', 'toolbar=no, menubar=no, resizable=no,width=800,height=800');
 }
 //staff list
 function displayStaffList(arr) {
@@ -111,6 +109,14 @@ function displayStaffList(arr) {
     }
 }
 
+function showShopDetails(e) {
+    var detailUrl = staffDetailUrl + e.target.id;
+    http.onreadystatechange = requestStaffDetail;
+    http.open("GET", detailUrl);
+    http.send();
+
+}
+
 function getStaffDetails(e) {
     var detailUrl = staffDetailUrl + e.target.id;
     http.onreadystatechange = requestStaffDetail;
@@ -118,6 +124,8 @@ function getStaffDetails(e) {
     http.send();
 
 }
+
+
 function requestStaffDetail() {
     if (http.readyState == 4 && http.status == 200) {
         var staffList = JSON.parse(http.responseText);

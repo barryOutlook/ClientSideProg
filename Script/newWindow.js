@@ -1,0 +1,1 @@
+﻿window.open(url, 'window', 'toolbar=no, menubar=no, resizable=yes,width=300,height=300');
