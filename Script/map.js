@@ -1,4 +1,13 @@
 ﻿
+var getCoordinates = function getCoordinates(coordinates) {
+    var lat = coordinates.latitude;
+    var lng = coordinates.longitude;
+    alert(lat);
+    alert(lng);
+};
+
+my.location.getLocation(getCoordinates);
+
 var shopId = QueryString.getValue("shopId");
 var shop = Mydata.getShopById(shopId);
 function initMap() {
@@ -15,3 +24,5 @@ function initMap() {
         title: shop.name
     });
 }
+
+
