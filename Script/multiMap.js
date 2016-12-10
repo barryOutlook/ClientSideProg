@@ -1,56 +1,105 @@
-﻿function initMap() {
+﻿
+
+// 54.569373, -1.237296
+
+function initMap() {
 	
-    var broadway = {
-        info: '<strong>Chipotle on Broadway</strong><br>\
-					5224 N Broadway St<br> Chicago, IL 60640<br>\
-					<a href="https://goo.gl/maps/jKNEDz4SyyH2">Get Directions</a>',
-        lat: 41.976816,
-        long: -87.659916
-    };
 
-    var belmont = {
-        info: '<strong>Chipotle on Belmont</strong><br>\
-					1025 W Belmont Ave<br> Chicago, IL 60657<br>\
-					<a href="https://goo.gl/maps/PHfsWTvgKa92">Get Directions</a>',
-        lat: 41.939670,
-        long: -87.655167
-    };
+    var locations = [];
+    var aLocation = {};
+    var sLocation = {};
 
-    var sheridan = {
-        info: '<strong>Chipotle on Sheridan</strong><br>\r\
-					6600 N Sheridan Rd<br> Chicago, IL 60626<br>\
-					<a href="https://goo.gl/maps/QGUrqZPsYp92">Get Directions</a>',
-        lat: 42.002707,
-        long: -87.661236
-    };
+    /// get shop
+    var shopId = my.QueryString.getValue("shopId");
+    var shop = my.data.getShopById(shopId);
+    sLocation.shopId = shop.shopId;
+    sLocation.name = shop.name;
+    sLocation.lat = shop.lat;
+    sLocation.lng = shop.long;
+    locations.push(sLocation);
 
-    var locations = [
-      [broadway.info, broadway.lat, broadway.long, 0],
-      [belmont.info, belmont.lat, belmont.long, 1],
-      [sheridan.info, sheridan.lat, sheridan.long, 2],
-    ];
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
 
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
-        center: new google.maps.LatLng(41.976816, -87.659916),
+        center: new google.maps.LatLng(54.569373, -1.237296),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var infowindow = new google.maps.InfoWindow({});
 
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-        });
-
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            return function () {
-                infowindow.setContent(locations[i][0]);
-                infowindow.open(map, marker);
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+            origin: { lat: locations[0].lat, lng: locations[0].lng },
+            destination: { lat: locations[1].lat, lng: locations[1].lng },
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
             }
-        })(marker, i));
+        });
     }
-}
+
+
+    var getYourCoordinates = function getCoordinates(coordinates) {
+            var lat = coordinates.latitude;
+            var lng = coordinates.longitude;
+            aLocation.shopId = 0;
+            aLocation.name = "Your Current Loacation";
+            aLocation.lat = lat;
+            aLocation.lng = lng;
+            locations.push(aLocation);
+            var pos = {
+                lat: aLocation.lat,
+                lng: aLocation.lng
+            };
+            map.setCenter(pos);
+            drawMap();
+        };
+
+        my.location.getLocation(getYourCoordinates);
+
+
+        function drawMap() {
+            var infowindow = new google.maps.InfoWindow({});
+
+            var marker, i;
+            var latlngbounds = new google.maps.LatLngBounds();
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+                    map: map
+                });
+
+                var loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i].name);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                latlngbounds.extend(marker.position);
+
+
+            }
+
+
+            var bounds = new google.maps.LatLngBounds();
+
+            //Center map and adjust Zoom based on the position of all markers.
+
+            map.setCenter(latlngbounds.getCenter());
+            map.fitBounds(latlngbounds);
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+            directionsDisplay.setMap(map);
+
+        };
+    }
+
+
+
+

@@ -53,7 +53,7 @@ function displayItemsInBuList(arr) {
 
 function getDetail(e) {
 
-    var url = "./map.html?shopId=" + e.target.id;
+    var url = "./multiMap.html?shopId=" + e.target.id;
     openMap(url);
 
 

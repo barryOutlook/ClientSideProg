@@ -11,7 +11,7 @@ my.data = (function () {
         shopId: 0,
         name: "",
         lat: 0.000000,
-        long: 0.000000
+        lng: 0.000000
     };
 
     var shops = [

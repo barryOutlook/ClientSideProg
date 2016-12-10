@@ -1,12 +1,12 @@
 ﻿
-var getCoordinates = function getCoordinates(coordinates) {
+var getYourCoordinates = function getCoordinates(coordinates) {
     var lat = coordinates.latitude;
     var lng = coordinates.longitude;
     alert(lat);
     alert(lng);
 };
 
-my.location.getLocation(getCoordinates);
+my.location.getLocation(getYourCoordinates);
 
 var shopId = my.QueryString.getValue("shopId");
 var shop = my.data.getShopById(shopId);
