@@ -2,7 +2,9 @@
     // window.my existis use it otherwise create it
     window.my = window.my || {};
 })();
-
+///
+/// This provides a data model for the application
+///
 my.data = (function () {
 
     var shop = {

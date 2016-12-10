@@ -1,12 +1,12 @@
 ﻿/// <reference path="../map.html" />
 /// <reference path="../map.html" />
+/// <reference path="../Intelscripts/_references.js" />
 
 
 
 
 //do the following at the start
 function start() {
-
     hideStaffList();
     GetBuList();
 
