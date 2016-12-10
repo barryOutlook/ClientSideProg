@@ -1,6 +1,6 @@
-﻿var queryString = window.location.search;
-queryString = queryString.substring(1);
-var shop = Mydata.getShopById(queryString);
+﻿
+var shopId = QueryString.getValue("shopId");
+var shop = Mydata.getShopById(shopId);
 function initMap() {
     var myLatLng = { lat: shop.lat, lng: shop.long };
 
