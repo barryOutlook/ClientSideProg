@@ -9,7 +9,11 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 750px;
+      }
+      button {
+          height: 50px;
+          width: 800px
       }
       /* Makes the map fill the window. */
       html, body {
@@ -23,7 +27,8 @@
 
 <body>
 
-	<div id="map"></div>
+    <div id="map"></div>
+    <div><button type="button">At Shop</button></div>
     <script src="Script/newMyLocation.js"></script>
     <script src="Script/QueryString.js"></script>
     <script src="Model/data.js"></script>
