@@ -1,7 +1,8 @@
 ﻿(function () {
-    //DevelopIntelligence namespace
+    // window.my existis use it otherwise create it
     window.my = window.my|| {};
 })();
+
 
 my.location = (function () {
     'use strict';

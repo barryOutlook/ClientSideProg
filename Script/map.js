@@ -8,8 +8,8 @@ var getCoordinates = function getCoordinates(coordinates) {
 
 my.location.getLocation(getCoordinates);
 
-var shopId = QueryString.getValue("shopId");
-var shop = Mydata.getShopById(shopId);
+var shopId = my.QueryString.getValue("shopId");
+var shop = my.data.getShopById(shopId);
 function initMap() {
     var myLatLng = { lat: shop.lat, lng: shop.long };
 

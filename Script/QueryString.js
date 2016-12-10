@@ -1,4 +1,9 @@
-﻿var QueryString = (function () {
+﻿(function () {
+    // window.my existis use it otherwise create it
+    window.my = window.my || {};
+})();
+
+my.QueryString = (function () {
 
     function getValue(variable) {
         var qs = getQueryStrings();

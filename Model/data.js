@@ -1,4 +1,9 @@
-﻿var Mydata = (function () {
+﻿(function () {
+    // window.my existis use it otherwise create it
+    window.my = window.my || {};
+})();
+
+my.data = (function () {
 
     var shop = {
         shopId: 0,
