@@ -1,7 +1,5 @@
 ﻿
 
-// 54.569373, -1.237296
-
 function initMap() {
 	
     /// get shop id
