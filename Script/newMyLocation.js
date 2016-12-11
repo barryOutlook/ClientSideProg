@@ -4,8 +4,17 @@
 })();
 
 
-my.location = (function () {
+my.GeoLocation = (function () {
     'use strict';
+
+    function Location(shopId, name, lat, lng) {
+        this.shopId = shopId;
+        this.name = name;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    var Locations = [];
 
     //Possible error codes thrown via the Geolocation API
     var ERROR_TYPE_CODES = [
@@ -63,7 +72,10 @@ my.location = (function () {
 
     //Location module API
     return {
-        getLocation: getLocation
+        getLocation: getLocation,
+        Location: Location,
+        Locations: Locations
+
     };
 
 })();

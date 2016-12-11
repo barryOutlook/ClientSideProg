@@ -14,8 +14,8 @@ function start() {
 
 
 function GetBuList() {
-    if (my.data) {
-        var shops = my.data.getShops();
+    if (my.Data) {
+        var shops = my.Data.getShops();
         if (shops != null) {
             displayItemsInBuList(shops);
         } else {

@@ -5,7 +5,7 @@
 ///
 /// This provides a data model for the application
 ///
-my.data = (function () {
+my.Data = (function () {
 
     var shop = {
         shopId: 0,
@@ -19,35 +19,35 @@ my.data = (function () {
             shopId: 1,
             name: "argos",
             lat: 54.577095,
-            long: -1.240860
+            lng: -1.240860
 
         },
         {
             shopId: 2,
             name: "b&m",
             lat: 54.577596,
-            long: -1.235675
+            lng: -1.235675
 
         },
         {
             shopId: 3,
             name: "iaasc wilson",
             lat: 54.578060,
-            long: -1.237137
+            lng: -1.237137
 
         },
         {
             shopId: 4,
             name: "grainger games",
             lat: 54.575472,
-            long: -1.238092
+            lng: -1.238092
 
         },
         {
             shopId: 5,
             name: "mima",
             lat: 54.574595,
-            long: -1.232787
+            lng: -1.232787
         }
     ];
 
