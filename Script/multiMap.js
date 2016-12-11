@@ -8,6 +8,12 @@ function initMap() {
     var locations = [];
     var aLocation = {};
     var sLocation = {};
+    var apos = {
+       
+    };
+    var spos = {
+       
+    };
 
     /// get shop
     var shopId = my.QueryString.getValue("shopId");
@@ -16,6 +22,9 @@ function initMap() {
     sLocation.name = shop.name;
     sLocation.lat = shop.lat;
     sLocation.lng = shop.long;
+    spos.lat = sLocation.lat;
+    spos.lng = sLocation.lng;
+   
     locations.push(sLocation);
 
     var directionsService = new google.maps.DirectionsService;
@@ -31,7 +40,7 @@ function initMap() {
         directionsService.route({
             origin: { lat: locations[0].lat, lng: locations[0].lng },
             destination: { lat: locations[1].lat, lng: locations[1].lng },
-            travelMode: 'DRIVING'
+            travelMode: 'WALKING'
         }, function(response, status) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
@@ -50,11 +59,9 @@ function initMap() {
             aLocation.lat = lat;
             aLocation.lng = lng;
             locations.push(aLocation);
-            var pos = {
-                lat: aLocation.lat,
-                lng: aLocation.lng
-            };
-            map.setCenter(pos);
+            apos.lat = aLocation.lat;
+            apos.lng = aLocation.lng;
+            map.setCenter(apos);
             drawMap();
         };
 
@@ -97,8 +104,18 @@ function initMap() {
             calculateAndDisplayRoute(directionsService, directionsDisplay);
             directionsDisplay.setMap(map);
 
+            var startp = new google.maps.LatLng(locations[0].lat, locations[0].lng);
+            var endp = new google.maps.LatLng(locations[1].lat, locations[1].lng);
+            var d = google.maps.geometry.spherical.computeDistanceBetween(startp, endp);
+            if (d < 10) {
+                alert("arrived");
+            };
         };
-    }
+
+     
+}
+
+window.onload = document.getElementById("btn1").addEventListener("click", initMap);
 
 
 
