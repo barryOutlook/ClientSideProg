@@ -66,7 +66,9 @@ my.GeoLocation = (function () {
                 //Reject the promise making the interaction a failure
                 failureCallback('Geolocation error: ' + errorMessage);
 
-            });
+            }
+
+            , { timeout: 10000 });
 
     };
 

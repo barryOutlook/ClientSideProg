@@ -27,7 +27,7 @@ function initMap() {
         var aLocation = new my.GeoLocation.Location(0, "Your Current Location", coordinates.latitude, coordinates.longitude);
         my.GeoLocation.Locations.push(aLocation);
             drawMap();
-            alert(getDistance());
+            var distance = getDistance();
     };
 
     my.GeoLocation.getLocation(getYourCoordinates);
