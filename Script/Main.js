@@ -1,35 +1,29 @@
-﻿
-var http = new XMLHttpRequest();
+﻿/// <reference path="../map.html" />
+/// <reference path="../map.html" />
+/// <reference path="../Intelscripts/_references.js" />
 
-// this must point to YOUR web service
-var coreUrl = "http://task2final.azurewebsites.net/api/";
 
-var buUrl = coreUrl + "BusinessUnit";
-
-var staffListUrl = coreUrl + "Staff/BusinessUnit/";
-
-var staffDetailUrl = coreUrl+ "Staff/";
 
 
 //do the following at the start
 function start() {
-
     hideStaffList();
-    http.onreadystatechange = GetBuList;
-    http.open("GET", buUrl);
-    http.send();
+    GetBuList();
+
 }
 
+
 function GetBuList() {
-    if (http.readyState == 4 && http.status == 200) {
-        var buisinessUnits = JSON.parse(http.responseText);
-        if (buisinessUnits != null) {
-            displayItemsInBuList(buisinessUnits);
+    if (my.Data) {
+        var shops = my.Data.getShops();
+        if (shops != null) {
+            displayItemsInBuList(shops);
         } else {
             hideAll();
         }
     }
 }
+
 //business units
 function displayItemsInBuList(arr) {
         
@@ -46,23 +40,22 @@ function displayItemsInBuList(arr) {
         var cell1 = row.insertCell(0);
         // insert another td withing the same row
         var cell2 = row.insertCell(1);
-        cell1.innerHTML = arr[i].title;
+        cell1.innerHTML = arr[i].name;
         // populate the first td with data from the array
-        var id = arr[i].businessUnitCode;
+        var id = arr[i].shopId;
         // populate the second row with a link
-        cell2.innerHTML = "&nbsp&nbsp&nbsp&nbsp<a href='#'     id='" + id + "' " + " >List Staff</a>";
+        cell2.innerHTML = "&nbsp&nbsp&nbsp&nbsp<a href='#'     id='" + id + "' " + " >List Items</a>";
         // bind this new link to a delete method
-        document.getElementById(id).onclick = getStaff;
+        document.getElementById(id).onclick = getDetail;
     }
 }
 
 
-function getStaff(e) {
+function getDetail(e) {
 
-    var detailUrl = staffListUrl + e.target.id;
-    http.onreadystatechange = requestDetail;
-    http.open("GET", detailUrl);
-    http.send();
+    var url = "./multiMap.html?shopId=" + e.target.id;
+    openMap(url);
+
 
 }
 
@@ -75,6 +68,11 @@ function requestDetail() {
             hideStaffList();
         }
     }
+}
+
+
+function openMap(url) {
+    window.open(url, 'window', 'toolbar=no, menubar=no, resizable=no,width=800,height=800');
 }
 //staff list
 function displayStaffList(arr) {
@@ -110,6 +108,14 @@ function displayStaffList(arr) {
     }
 }
 
+function showShopDetails(e) {
+    var detailUrl = staffDetailUrl + e.target.id;
+    http.onreadystatechange = requestStaffDetail;
+    http.open("GET", detailUrl);
+    http.send();
+
+}
+
 function getStaffDetails(e) {
     var detailUrl = staffDetailUrl + e.target.id;
     http.onreadystatechange = requestStaffDetail;
@@ -117,6 +123,8 @@ function getStaffDetails(e) {
     http.send();
 
 }
+
+
 function requestStaffDetail() {
     if (http.readyState == 4 && http.status == 200) {
         var staffList = JSON.parse(http.responseText);
