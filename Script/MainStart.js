@@ -6,6 +6,9 @@ var staffDetailUrl = coreUrl+ "";
 
 
 function start() {
+    if (!window.indexedDB) {
+        window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+    }
     hideStaffList();
     http.onreadystatechange = getBuList;
     http.open("GET", buUrl);

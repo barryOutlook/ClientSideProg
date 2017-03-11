@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <form id="myForm" action="" name="myForm" novalidate >
+        <fieldset class="myForm">
+            <legend>Personal information:</legend>
+
+            <label>Username:</label><br>
+            <input type="text" name="userName" required>
+            <label>Password:</label><br>
+            <input type="password" name="passWord" required>
+
+            Your Car
+            <select name="cars" multiple="multiple">
+                <option value="volvo">Volvo</option>
+                <option value="saab" selected>Saab</option>
+                <option value="fiat" selected>Fiat</option>
+                <option value="audi">Audi</option>
+            </select>
+
+            <label>Gender</label>
+            <input type="radio" name="gender" value="male" checked> Male
+            <input type="radio" name="gender" value="female"> Female  
+            <input type="radio" name="gender" value="other"> Student
+
+            <label>Comments</label>
+            <textarea id="TextArea" cols="100" rows="20" name="Comments"></textarea>
+
+            <input name="formSubmit" type="submit" value="Submit">
+            <input name="reset" id="Reset" type="reset" value="Reset" />
+
+        </fieldset>
+    </form>
+
+
+    <script src="Forms/Script/getData.js"></script>
+</body>
+</html>
