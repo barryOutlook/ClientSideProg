@@ -3,14 +3,11 @@
     window.my = window.my || {};
 })();
 
-///
-/// This provides a data access layer for the application
-///
-my.localStore = (function () {
+my.sessionStore = (function () {
 
     function createItem(key, value) {
-        if (window.localStorage && !localStorage.getItem(key)) {
-            localStorage.setItem(key,JSON.stringify(value));
+        if (window.sessionStorage && !sessionStorage.getItem(key)) {
+            sessionStorage.setItem(key, JSON.stringify(value));
             return true;
         } else {
             return false;
@@ -18,17 +15,17 @@ my.localStore = (function () {
     }
 
     function readItem(key) {
-        if (window.localStorage && localStorage.getItem(key)) {
-            return JSON.parse(localStorage.getItem(key));
+        if (window.sessionStorage && sessionStorage.getItem(key)) {
+            return JSON.parse(sessionStorage.getItem(key));
         } else {
             return null;
         }
     }
 
     function updateItem(key, value) {
-        if (window.localStorage && localStorage.getItem(key)) {
-            localStorage.removeItem(key);
-            localStorage.setItem(key, JSON.stringify(value));
+        if (window.sessionStorage && sessionStorage.getItem(key)) {
+            sessionStorage.removeItem(key);
+            sessionStorage.setItem(key, JSON.stringify(value));
             return true;
         } else {
             return false;
@@ -36,8 +33,8 @@ my.localStore = (function () {
     }
 
     function deleteItem(key) {
-        if (window.localStorage && localStorage.getItem(key)) {
-            localStorage.removeItem(key);
+        if (window.sessionStorage && sessionStorage.getItem(key)) {
+            sessionStorage.removeItem(key);
             return true;
         } else {
             return false;
@@ -53,5 +50,3 @@ my.localStore = (function () {
     };
 
 })();
-
-
