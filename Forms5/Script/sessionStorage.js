@@ -41,12 +41,32 @@ my.sessionStore = (function () {
         }
     }
 
+    function getAllKeys() {
+        var keys = [];
+        if (window.sessionStorage.length > 0) {
+
+            for (var i = 0; i < sessionStorage.length; i++) {
+                keys[i] = sessionStorage.key(i);
+            }
+        }
+        return keys;
+    }
+
+    function clearAll() {
+        if (window.sessionStorage) {
+            sessionStorage.clear();
+            return true;
+        } else { return false }
+    }
+
 
     return {
         createItem: createItem,
         readItem: readItem,
         updateItem: updateItem,
-        deleteItem: deleteItem
+        deleteItem: deleteItem,
+        getAllKeys: getAllKeys,
+        clearAll: clearAll
     };
 
 })();

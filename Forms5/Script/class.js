@@ -37,6 +37,22 @@
             }
         }
 
+        this.getAllKeys = function () {
+            if (local) {
+                return my.localStore.getAllKeys();
+            } else {
+                return my.sessionStore.getAllKeys();
+            }
+        }
+
+        this.clear = function () {
+            if (local) {
+                return my.localStore.clearAll();
+            } else {
+                return my.sessionStore.clearAll();
+            }
+        }
+
 
     }
     // instance methods

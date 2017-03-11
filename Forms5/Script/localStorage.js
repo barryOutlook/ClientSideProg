@@ -44,12 +44,32 @@ my.localStore = (function () {
         }
     }
 
+    function getAllKeys() {
+        var keys = [];
+        if (window.localStorage.length > 0) {
+
+            for (var i = 0; i < localStorage.length; i++) {
+                keys[i] = localStorage.key(i);
+            }
+        }
+        return keys;
+    }
+
+    function clearAll() {
+        if (window.localStorage) {
+            localStorage.clear();
+            return true;
+        } else { return false}
+    }
+
 
     return {
         createItem: createItem,
         readItem: readItem,
         updateItem: updateItem,
-        deleteItem: deleteItem
+        deleteItem: deleteItem,
+        getAllKeys: getAllKeys,
+        clearAll: clearAll
     };
 
 })();
