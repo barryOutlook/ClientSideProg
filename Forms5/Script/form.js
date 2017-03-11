@@ -4,6 +4,7 @@
     document.getElementById("myForm").addEventListener("submit",
         function (event) {
             event.target.elements.namedItem("passWord").addEventListener('invalid',passwordError, false);
+            ///
             main(event);
         });
     
