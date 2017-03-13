@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Forms5(1)", ".", "{30592C6D-7418-4664-8C84-1AFE97535794}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Forms5", ".", "{30592C6D-7418-4664-8C84-1AFE97535794}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_54239"
 		Debug.AspNetCompiler.PhysicalPath = "..\Forms5\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54239\"
