@@ -5,12 +5,27 @@
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function updateCookie(cname, cvalue, exdays) {
+    if (checkCookie(name)) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        return true;
+    } else { return false }
+}
+
 
 function deleteCookie(cname) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    document.cookie = cname + "=" + "" + ";" + expires + ";path=/";
+    if (checkCookie(name)) {
+        var expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = cname + "=" + "" + ";" + expires + ";path=/";
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 function checkCookie(name) {

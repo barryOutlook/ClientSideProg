@@ -18,5 +18,9 @@
     alert(localStore.deleteItem('FISH'));
     alert(localStore.readItem('mol'));
     alert(sessionStore.readItem('mol'));
+    createCookie("barryCookie", "barryValue", 1);
+    alert(" barryCookie is " + readCookie("barryCookie"));
+    deleteCookie("barryCookie");
+    alert(" barryCookie is " + readCookie("barryCookie"));
 }
 
