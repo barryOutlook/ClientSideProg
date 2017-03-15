@@ -1,4 +1,5 @@
 ﻿window.onload = function () {
+    var obj = {name:"Barry", Age: 23}
     var localStore = new StoreRep(true);
     var sessionStore = new StoreRep(false);
     sessionStore.createItem("mol","session");
@@ -19,8 +20,14 @@
     alert(localStore.readItem('mol'));
     alert(sessionStore.readItem('mol'));
     createCookie("barryCookie", "barryValue", 1);
+    createCookie("SueCookie", "SueValue", 1);
     alert(" barryCookie is " + readCookie("barryCookie"));
     deleteCookie("barryCookie");
     alert(" barryCookie is " + readCookie("barryCookie"));
+    updateCookie("SueCookie", "SueNewValue", 1);
+    alert("SueCookie is " + readCookie("SueCookie"));
+   var result = updateCookie("SueCookie", JSON.stringify(obj), 1);
+    var fred = readCookie("SueCookie");
+    alert(fred);
 }
 
