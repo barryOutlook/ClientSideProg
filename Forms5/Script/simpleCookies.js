@@ -1,8 +1,11 @@
 ﻿function createCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    if (cookiesEnabled()) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        return true;
+    } else { return false }
 }
 
 function readCookie(cname) { //Take the cookiename as parameter (cname).
@@ -71,3 +74,11 @@ function getAllCookies() {
 
 }
 
+function cookiesEnabled() {
+    var cookieEnabled = (navigator.cookieEnabled) ? true : false;
+    if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled) {
+        document.cookie = "testcookie";
+        cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
+    }
+    return (cookieEnabled);
+}
